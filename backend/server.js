@@ -5,6 +5,8 @@ const cors = require('cors');
 const authRoutes = require('./routes/auth.routes');
 const serviceRoutes = require('./routes/service.routes');
 const bookingRoutes = require('./routes/booking.routes');
+const notFound = require('./middlewares/notFound.middleware');
+const errorHandler = require('./middlewares/handleError.middleware');
 
 const app = express();
 
@@ -58,24 +60,10 @@ app.get('/', (req, res) => {
 });
 
 // ✅ 404 Handler
-app.use((req, res) => {
-    console.log('❌ 404 Not Found:', req.originalUrl);
-    res.status(404).json({
-        success: false,
-        message: 'Route not found',
-        path: req.originalUrl
-    });
-});
+app.use(notFound);
 
 // ✅ Error Handler
-app.use((err, req, res, next) => {
-    console.error('❌ Server error:', err.stack);
-    res.status(500).json({
-        success: false,
-        message: 'Something went wrong!',
-        error: process.env.NODE_ENV === 'development' ? err.message : 'Internal server error'
-    });
-});
+app.use(errorHandler);
 
 // ✅ Start Server
 const PORT = process.env.PORT || 3000;

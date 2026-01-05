@@ -97,28 +97,6 @@ export default function AuthPage({ navigation, route }: Props) {
     }
   }, [route.params?.mode]);
 
-  // useEffect(() => {
-  //   if (Platform.OS === 'web') {
-  //     const newPath = currentForm === 'register' ? '/auth/register' : '/auth/login';
-
-  //     if (window.location.pathname !== newPath) {
-  //       window.history.pushState({}, '', newPath);
-  //     }
-  //   }
-  // }, [currentForm]);
-
-  // useEffect(() => {
-  //   if (Platform.OS === 'web') {
-  //     const pathname = window.location.pathname;
-
-  //     if (pathname.includes('/login')) {
-  //       setCurrentForm('login');
-  //     } else if (pathname.includes('/register')) {
-  //       setCurrentForm('register');
-  //     }
-  //   }
-  // })
-
   // Reset animasi setiap kali reload
   useEffect(() => {
     setAnimationKey((prev) => prev + 1);
@@ -236,15 +214,6 @@ export default function AuthPage({ navigation, route }: Props) {
     } catch (err: any) {
       console.log('Login failed:', err);
     }
-    // Bandingkan dengan data register
-    // if (email === registerData.email && password === registerData.password) {
-    //   showToast(`Welcome back, ${registerData.fullname}!`, 'success');
-    //   setTimeout(() => {
-    //     navigation.navigate('ServiceList');
-    //   }, 1500);
-    // } else {
-    //   showToast('Email or password is incorrect.', 'error');
-    // }
   };
 
     // HANDLE SUCCESSFUL LOGIN
